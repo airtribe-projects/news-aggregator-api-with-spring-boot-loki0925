@@ -1,0 +1,54 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.3'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.airtribe'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Spring Boot Core Dependencies
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
+
+	// Spring Boot Validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// JWT for Authentication
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+
+	// Spring WebClient for API Calls
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	// For JSON binding, e.g., Jackson
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+	// H2 Database (In-memory)
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	// Testing Dependencies
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
